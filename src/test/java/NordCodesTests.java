@@ -37,6 +37,7 @@ public class NordCodesTests extends BaseTest {
             $("#pirate-forms-attachment").uploadFromClasspath("img/CV.png");
         });
     }
+
     @Test
     @DisplayName("Проверка наличия вакансий")
     void shouldText () {
