@@ -1,10 +1,8 @@
 import com.codeborne.selenide.Condition;
-import helpers.BaseTest;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import static com.codeborne.selenide.Selenide.$;
-import static com.codeborne.selenide.Selenide.open;
+import static com.codeborne.selenide.Selenide.*;
 import static io.qameta.allure.Allure.step;
 
 public class NordCodesTests extends BaseTest {
@@ -36,6 +34,23 @@ public class NordCodesTests extends BaseTest {
             $("#pirate-forms-contact-email").setValue("testemail@test.com");
             $("#pirate-forms-contact-subject").setValue("Test");
             $("#pirate-forms-contact-message").setValue("Хочу у вас работать)");
+            $("#pirate-forms-attachment").uploadFromClasspath("img/CV.png");
+        });
+    }
+    @Test
+    @DisplayName("Проверка наличия вакансий")
+    void shouldText () {
+        step("Проверка наличия вакансий", () -> {
+            open("https://nord.codes");
+            $("#carousel-homepage-latestnews").shouldHave(Condition.text("JUNIOR JAVA QA AUTOMATION ENGINEER "));
+       });
+   }
+    @Test
+    @DisplayName("Проверка информации о компании")
+    void aboutInfo () {
+        step("Проверка информации о компании", () -> {
+            open("https://nord.codes");
+            $("#aboutus").shouldHave(Condition.text("О НАС"));
         });
     }
 }
